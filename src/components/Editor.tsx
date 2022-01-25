@@ -18,7 +18,7 @@ const empFormSchema = Yup.object().shape({
 
 const Editor: React.FC = (props) => {
   return (
-    <div>
+    <div className={classes.contact_form}>
       <h1>Edit Employee</h1>
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "", gender: "" }}
@@ -28,49 +28,52 @@ const Editor: React.FC = (props) => {
         }}
       >
         <Form>
-          <label htmlFor="firstName">First Name</label>
-          <Field
-            id="firstName"
-            name="firstName"
-            placeholder="Enter First Name"
-          />
-          <ErrorMessage
-            name="firstName"
-            render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
-          />
-
-          <label htmlFor="lastName">Last Name</label>
-          <Field id="lastName" name="lastName" placeholder="Enter Last Name" />
-          <ErrorMessage
-            name="lastName"
-            render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
-          />
-
-          <label htmlFor="email">Email</label>
-          <Field
-            id="email"
-            name="email"
-            placeholder="jane@acme.com"
-            type="email"
-          />
-          <ErrorMessage
-            name="email"
-            render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
-          />
-
-          <label htmlFor="gender">Gender</label>
-          <Field id="gender" name="gender" component="select">
-            <option value="">Select Option</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="transgender">Transgender</option>
-          </Field>
-          <ErrorMessage
-            name="gender"
-            render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
-          />
-
-          <button type="submit">Submit</button>
+          <div className={classes.form_group}>
+            <label htmlFor="firstName">First Name</label>
+            <Field
+              id="firstName"
+              name="firstName"
+              placeholder="Enter First Name"
+            />
+            <ErrorMessage
+              name="firstName"
+              render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
+            />
+          </div>
+          <div className={classes.form_group}>
+            <label htmlFor="lastName">First Name</label>
+            <Field
+              id="lastName"
+              name="lastName"
+              placeholder="Enter Last Name"
+            />
+            <ErrorMessage
+              name="lastName"
+              render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
+            />
+          </div>
+          <div className={classes.form_group}>
+            <label htmlFor="email">First Name</label>
+            <Field id="email" name="email" placeholder="Enter First Name" />
+            <ErrorMessage
+              name="email"
+              render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
+            />
+          </div>
+          <div className={classes.form_group}>
+            <label htmlFor="gender">Gender</label>
+            <Field id="gender" name="gender" component="select">
+              <option value="">Select Option</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="transgender">Transgender</option>
+            </Field>
+            <ErrorMessage
+              name="gender"
+              render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
+            />
+          </div>
+          <button type="submit" className={classes.saveBtn}>Submit</button>
         </Form>
       </Formik>
     </div>
