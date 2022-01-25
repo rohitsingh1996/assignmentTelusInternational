@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import List from './components/List';
+import Editor from './components/Editor';
+import TableList from './components/TableList';
 
 function App() {
   return (
     <div>
-      <List />
+      <TableList />
+      <Editor />
     </div>
   );
 }
