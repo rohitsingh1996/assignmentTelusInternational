@@ -2,6 +2,7 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import classes from "./Editor.module.css";
+import Employee from "../models/employee";
 
 const empFormSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -16,15 +17,30 @@ const empFormSchema = Yup.object().shape({
   gender: Yup.string().required("Required"),
 });
 
-const Editor: React.FC = (props) => {
+const Editor: React.FC<{
+  currentEmployee: any;
+  onUpdateEmployee: (data: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    gender: string;
+  }) => void;
+}> = (props) => {
   return (
     <div className={classes.contact_form}>
       <h1>Edit Employee</h1>
       <Formik
-        initialValues={{ firstName: "", lastName: "", email: "", gender: "" }}
+        initialValues={{
+          firstName: props.currentEmployee.firstName,
+          lastName: props.currentEmployee.lastName,
+          email: props.currentEmployee.email,
+          gender: props.currentEmployee.gender,
+        }}
         validationSchema={empFormSchema}
         onSubmit={(values) => {
           console.log(values);
+          props.onUpdateEmployee({ ...values, id: props.currentEmployee.id });
         }}
       >
         <Form>
@@ -73,7 +89,9 @@ const Editor: React.FC = (props) => {
               render={(msg) => <div className={classes.errorMsg}>{msg}</div>}
             />
           </div>
-          <button type="submit" className={classes.saveBtn}>Submit</button>
+          <button type="submit" className={classes.saveBtn}>
+            Submit
+          </button>
         </Form>
       </Formik>
     </div>
